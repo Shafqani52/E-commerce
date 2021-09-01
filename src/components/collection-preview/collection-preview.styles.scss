@@ -1,0 +1,15 @@
+.collection-title {
+    font-size: 28px;
+    text-transform: uppercase;
+}
+.collection-wrap {
+    margin-bottom: 80px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+.collection {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+}

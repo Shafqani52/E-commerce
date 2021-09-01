@@ -1,0 +1,16 @@
+.header {
+    padding: 30px 0;
+    .header-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .menu {
+        a {
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 20px;
+            color: #000;
+        }
+    }
+}
