@@ -19,7 +19,11 @@ class SignUp extends React.Component {
     }
     handleChange = e => {
         const {name,value} = e.target;
-        this.setState({[name] : value})
+        this.setState({[name] : value});
+        const el = e.target;
+        if(!el.value) {
+            el.nextElementSibling.classList.remove('shrink')
+        }
     }
     render(){
         const {name, password, email, confirmPassword} = this.state;
@@ -63,7 +67,7 @@ class SignUp extends React.Component {
                             label='Confirm Password' 
                             required
                         />
-                        <CustomButton>Sign Up</CustomButton>
+                        <CustomButton bg_color='btn-primary'>Sign Up</CustomButton>
                     </form>
                 </div>
             </div>

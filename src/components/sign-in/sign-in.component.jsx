@@ -3,13 +3,33 @@ import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.components';
 import './sign-in.styles.scss';
 
+
+
 class SignIn extends React.Component {
     constructor(){
         super();
         this.state = {
             password: '',
             email: '',
-            shrink: false
+        }
+        document.body.addEventListener('click', this.handleShrink)
+    }
+    handleShrink = e => {
+        const el = e.target;
+        const label = document.getElementsByClassName('input-label');
+        const inputField = document.getElementsByClassName('form-input');
+        if(el.className === 'form-input') {
+            el.nextElementSibling.classList.add('shrink')
+        }else {
+            for (let i = 0; i < label.length; i++) {
+                label[i].classList.remove('shrink')
+            }
+            
+            for (let i = 0; i < inputField.length; i++) {
+                if(inputField[i].value) {
+                    inputField[i].nextElementSibling.classList.add('shrink')
+                }
+            }
         }
     }
     handleSubmit = e => {
@@ -18,14 +38,18 @@ class SignIn extends React.Component {
     }
     handleChange = e => {
         const {name,value} = e.target;
-        this.setState({[name] : value})
+        this.setState({[name] : value});
+        const el = e.target;
+        if(!el.value) {
+            el.nextElementSibling.classList.remove('shrink')
+        }
     }
     handleClick = e => {
         const input = e.target;
-        input.classList.add('shrink')
+        input.nextElementSibling.classList.add('shrink');
     }
     render(){
-        const {password, email,shrink} = this.state;
+        const {password, email} = this.state;
         return (
             <div className="sign-in">
                 <div className="header-wrap">
@@ -41,7 +65,6 @@ class SignIn extends React.Component {
                             handleChange={this.handleChange} 
                             handleClick={this.handleClick} 
                             label='Name' 
-                            shrink={shrink}
                             required
                         />
                         <FormInput 
@@ -51,10 +74,9 @@ class SignIn extends React.Component {
                             handleChange={this.handleChange} 
                             handleClick={this.handleClick} 
                             label='Password' 
-                            shrink={shrink}
                             required
                         />
-                        <CustomButton>Submit Form</CustomButton>
+                        <CustomButton bg_color='btn-primary'>Sign In</CustomButton>
                     </form>
                 </div>
             </div>
